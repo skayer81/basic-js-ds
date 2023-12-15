@@ -16,7 +16,8 @@ const { NotImplementedError } = require('../extensions/index.js');
 // max— возвращает максимальное значение , хранящееся в дереве (или nullесли дерево не имеет узлов )
 class BinarySearchTree {
   constructor(){
-    this._root = null
+    this._root = null;
+    this._curent = null;
   }
 
   
@@ -26,28 +27,46 @@ class BinarySearchTree {
     // remove line with error and write your code here
     return this._root;
   }
-  initRoot(){
-    this._root.value = data;
-    this._root.rigth = null;
-    this._root.left = null;
+  initRoot(data){
+    console.log(data, 'init')
+    this._root = this._newElem(data);
+    // this._root.rigth = null;
+    // this._root.left = null;
   }
 
-  _searchElem(data, elem){
-    if (elem.value > data){
-      if (!elem.rigth) return elem;
-      this._searchElem(data, elem.rigth);
+  _searchElem(data){
+    if (this._curent.data < data){
+      if (!this._curent.rigth) {
+        this._curent.rigth = this._newElem(data);
+        return
+      }
+      this._curent = this._curent.rigth;
+    //  this._searchElem(data)
     }
     else{
-      if (!elem.left) return elem;
-      this._searchElem(data, elem.left);
+      if (!this._curent.left) {
+        this._curent.left = this._newElem(data);
+        return
+      }
+      this._curent = this._curent.left;
     }
+    this._searchElem(data)
+  }
+
+  _newElem(data){
+    return {data:data, left:null, rigth: null};
   }
 
   add( data ) {
-    if (this._root = null) this.initRoot();
-    else  this._searchElem(data, this._root);
+    console.log(data,'add')
+    if (this._root == null) this.initRoot(data)
+    else  {
+      this._curent = this._root;
+      this._searchElem(data);
+    }
     //throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
+    console.log(this.root())
   }
 
   has(/* data */) {
@@ -55,9 +74,36 @@ class BinarySearchTree {
     // remove line with error and write your code here
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  _find(data){
+    //console.debug(data, this._curent)
+    if (data === this._curent.data) {
+     // console.debug('return', this._curent)
+      return this._curent;}
+    if (data > this._curent.data){
+      if (!this._curent.rigth) {
+        //this._curent.rigth = this._newElem(data);
+       // console.debug('return', null)
+        return null
+      }
+      this._curent = this._curent.rigth;
+    //  this.find(data)
+    }
+    else{
+      if (!this._curent.left) {
+       // this._curent.left = this._newElem(data);
+      // console.debug('return', null)
+        return null
+      }
+      this._curent = this._curent.left;
+    }
+    return this._find(data)
+  }
+
+  find( data ) {
+    this._curent = this._root;
+    let result = this._find(data);
+   // console.debug(data, result, this.root())
+    return  result
   }
 
   remove(/* data */) {
