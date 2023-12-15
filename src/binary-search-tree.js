@@ -69,11 +69,6 @@ class BinarySearchTree {
     console.log(this.root())
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
   _find(data){
     //console.debug(data, this._curent)
     if (data === this._curent.data) {
@@ -104,6 +99,13 @@ class BinarySearchTree {
     let result = this._find(data);
    // console.debug(data, result, this.root())
     return  result
+  }
+
+  has( data ) {
+    this._curent = this._root;
+    let result = this._find(data);
+    if (result) return true;
+    return false;
   }
 
   remove(/* data */) {
