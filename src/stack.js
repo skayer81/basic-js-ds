@@ -19,21 +19,15 @@ class Stack {
   
   push( element) {
     this.stack.push(element);
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
   }
 
   pop() {
     if (this.stack.length === 0) return undefined;
     return this.stack.pop();
-   // throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
   }
 
   peek() {
     return this.stack[this.stack.length-1]
-   // throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
   }
 }
 

@@ -20,15 +20,6 @@ class Queue {
   }
 
   getUnderlyingList() {
-    // let result = {}
-    // let curentElem = result//{next:null}
-    // let next = {};
-    // for (let i = 0; i < this.queue.length; i++){
-    //   curentElem.value = this.queue[i];
-    //   curentElem.next = next;
-    //   curentElem = next;
-    // }
-    // return result
     return this.queue;
   }
 

@@ -34,15 +34,6 @@ function removeKFromList( l, k ) {
     else curent = curent.next
   }
   return l
-  // let curent = l
-  // do{
-  //   if (curent.value === k) curent.next = curent.next.next
-  // }
-  // while (l.next != null)
-  //return l.filter(el => el != k)
-  //return Array(l).join('').replase(k, '').split('');
- // throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
 }
 
 module.exports = {

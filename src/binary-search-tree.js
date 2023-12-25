@@ -75,18 +75,20 @@ class BinarySearchTree {
       else this._parent.left = null
     }
     if (result.left && !result.rigth){
-      if(this._parentRigth) this._parent.rigth = result.left
+      if (result === this._root) this._root = this._root.left
+      else if(this._parentRigth) this._parent.rigth = result.left
       else this._parent.left = result.left
     }
     if (!result.left && result.rigth){
-      if(this._parentRigth) this._parent.rigth = result.rigth
+      if (result === this._root) this._root = this._root.rigth
+      else if(this._parentRigth) this._parent.rigth = result.rigth
       else this._parent.left = result.rigth
     }
     if (result.left && result.rigth){
       let result = this._curent;
       this._parent = result;
       this._curent = result.rigth;
-      this._searchElem(-1000);
+      this._searchElem(-Infinity);
       let curentMin = this._curent
       result.data = curentMin.data;
       this._remove(curentMin);
@@ -115,3 +117,4 @@ class BinarySearchTree {
 module.exports = {
   BinarySearchTree
 };
+
