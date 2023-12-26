@@ -28,21 +28,21 @@ class BinarySearchTree {
     if (this._curent.data === data) return
     if (this._curent.data < data){
       if (!this._curent.rigth) {
-        this._parentRigth = false;
+    //    this._parentRigth = false;
         this._curentSide = 'rigth';
         return
       }
-      this._parentRigth = true;
+//this._parentRigth = true;
       this._parent = this._curent;
       this._curent = this._curent.rigth;
     }
     else {
       if (!this._curent.left) {
         this._curentSide = 'left'
-        this._parentRigth = true;
+    //   this._parentRigth = true;
         return
       }
-      this._parentRigth = false;
+   //   this._parentRigth = false;
       this._parent = this._curent;
       this._curent = this._curent.left;
     }
@@ -71,18 +71,18 @@ class BinarySearchTree {
 
   _remove( result){
     if (!result.left && !result.rigth){
-      if(this._parentRigth) this._parent.rigth = null
+    if(this._parent.data <= result.data) this._parent.rigth = null
       else this._parent.left = null
     }
     if (result.left && !result.rigth){
       if (result === this._root) this._root = this._root.left
-      else if(this._parentRigth) this._parent.rigth = result.left
-      else this._parent.left = result.left
+      else if(this._parent.data <= result.data) this._parent.rigth = result.left
+        else this._parent.left = result.left
     }
     if (!result.left && result.rigth){
       if (result === this._root) this._root = this._root.rigth
-      else if(this._parentRigth) this._parent.rigth = result.rigth
-      else this._parent.left = result.rigth
+      else if(this._parent.data <= result.data) this._parent.rigth = result.rigth
+        else this._parent.left = result.rigth
     }
     if (result.left && result.rigth){
       let result = this._curent;
@@ -91,7 +91,7 @@ class BinarySearchTree {
       this._searchElem(-Infinity);
       let curentMin = this._curent
       result.data = curentMin.data;
-      this._remove(curentMin);
+      this._remove(curentMin, );
     }
   }
 
